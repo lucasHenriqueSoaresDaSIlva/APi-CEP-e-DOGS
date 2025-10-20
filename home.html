@@ -3,39 +3,341 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Mini Apps</title>
+  <title>Mini App | Consulta CEP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
 /* ======= RESET ======= */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
-body { height: 100vh; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; color: #fff }
-.bubble { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.5; animation: float 8s infinite ease-in-out; }
-.bubble:nth-child(1){ width:150px;height:150px; top:15%; left:10%; background:#ff00ff }
-.bubble:nth-child(2){ width:250px;height:250px; bottom:10%; right:15%; background:#00ffff }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
-.card { position: relative; width:420px; background: rgba(20,20,20,0.9); border-radius:16px; padding:28px; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04) }
-.card h1{ font-size:1.6rem; background: linear-gradient(90deg,#ff00ff,#00ffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px }
-.card p{ color:#cbdaf0; margin-bottom:18px }
-.links{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
-.links a{ display:inline-block; padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,#bf0fb3,#4dd0e1); color:#041018; font-weight:700; text-decoration:none }
-.small{ font-size:0.85rem; color:#9fb8cc; margin-top:12px }
-@media(max-width:480px){ .card{ width:92%; padding:18px } }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ======= FUNDO DARK MODERNO ======= */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d0d0d; /* Fundo mais escuro */
+  overflow: hidden;
+  position: relative;
+}
+
+/* ======= BOLHAS NEON ANIMADAS ======= */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px); /* Suavizado para um efeito mais sutil */
+  opacity: 0.4;
+  animation: float 10s infinite ease-in-out;
+  background: linear-gradient(45deg, var(--color1), var(--color2));
+  z-index: 0; /* Para ficar atrás do conteúdo */
+}
+.bubble:nth-child(1) {
+  --color1: #ff00ff;
+  --color2: #ff69b4;
+  width: 180px;
+  height: 180px;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 12s;
+}
+.bubble:nth-child(2) {
+  --color1: #00ffff;
+  --color2: #87ceeb;
+  width: 280px;
+  height: 280px;
+  bottom: 10%;
+  right: 15%;
+  animation-delay: 4s;
+  animation-duration: 15s;
+}
+.bubble:nth-child(3) {
+  --color1: #ff4500;
+  --color2: #ffa500;
+  width: 120px;
+  height: 120px;
+  top: 5%;
+  right: 5%;
+  animation-delay: 2s;
+  animation-duration: 10s;
+}
+.bubble:nth-child(4) {
+  --color1: #32cd32;
+  --color2: #98fb98;
+  width: 200px;
+  height: 200px;
+  bottom: 5%;
+  left: 8%;
+  animation-delay: 6s;
+  animation-duration: 13s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  25% { transform: translateY(-20px) translateX(10px) scale(1.05); }
+  50% { transform: translateY(-40px) translateX(-10px) scale(1); }
+  75% { transform: translateY(-20px) translateX(10px) scale(0.95); }
+}
+
+/* ======= CONTAINER PRINCIPAL ======= */
+.app {
+  position: relative;
+  width: 400px; /* Ligeiramente mais largo */
+  backdrop-filter: blur(20px); /* Mais blur */
+  background: rgba(20, 20, 20, 0.7); /* Mais transparente */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Borda mais sutil */
+  border-radius: 25px; /* Bordas mais arredondadas */
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9); /* Sombra mais intensa */
+  padding: 50px 35px; /* Mais padding */
+  text-align: center;
+  color: #e0e0e0; /* Cor do texto mais clara */
+  animation: fadeIn 1.2s ease forwards;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Espaçamento entre elementos */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======= TÍTULO H1 ======= */
+h1 {
+  font-size: 2.2em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* ======= GRUPO DE BOTÕES ======= */
+.button-group {
+  display: flex;
+  flex-direction: column; /* Botões um abaixo do outro */
+  gap: 20px; /* Espaço entre os botões */
+  margin-top: 30px;
+}
+
+/* ======= ESTILO DOS BOTÕES ANIMADOS ======= */
+.neon-button {
+  position: relative;
+  display: inline-flex; /* Para centralizar o texto verticalmente */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ocupa a largura total do container */
+  height: 55px; /* Altura fixa para todos os botões */
+  background: linear-gradient(45deg, var(--button-bg1), var(--button-bg2));
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(var(--button-shadow-rgb), 0.5);
+  letter-spacing: 0.8px;
+}
+
+.neon-button:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: rotate(45deg);
+  transition: transform 0.8s ease;
+  opacity: 0;
+}
+
+.neon-button:hover:before {
+  transform: rotate(225deg);
+  opacity: 1;
+}
+
+.neon-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px rgba(var(--button-shadow-rgb), 0.8),
+              0 0 30px rgba(var(--button-shadow-rgb), 0.6);
+}
+
+/* Cores específicas para cada botão */
+.neon-button.home { /* Renomeado para 'home' */
+  --button-bg1: #ff00ff;
+  --button-bg2: #da70d6;
+  --button-shadow-rgb: 255, 0, 255;
+}
+
+.neon-button.dog-ceo {
+  --button-bg1: #00ffff;
+  --button-bg2: #40e0d0;
+  --button-shadow-rgb: 0, 255, 255;
+}
+
+/* Estilos para o conteúdo específico da página de CEP */
+.cep-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.cep-section label {
+  display: block;
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.cep-section input[type="text"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1em;
+}
+
+.cep-section input[type="text"]:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.cep-section button {
+  background: linear-gradient(45deg, #ad03b9, #0ad9e7);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #ad03b9
+}
+
+.cep-section button:hover {
+  background: linear-gradient(45deg, #ad03b9, #0ad9e7);
+  box-shadow: 0 5px 15px rgba(0, 221, 255, 0.6);
+}
+
+.cep-result p {
+  margin-top: 15px;
+  font-size: 1em;
+  color: #ccc;
+  line-height: 1.6;
+}
+.cep-result strong {
+  color: #fff;
+}
+
+
+/* Footer com texto menor */
+.footer-text {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #a0a0a0;
+  font-weight: 300;
+}
+
   </style>
 </head>
 <body>
+
+  <!-- Bolhas Neon Animadas -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
   <div class="bubble"></div>
   <div class="bubble"></div>
 
-  <main class="card">
-    <h1>Bem-vindo(a)</h1>
-    <p>Selecione uma das ferramentas abaixo — Projeto de exemplo com Dog CEO e consulta CEP.</p>
+  <div class="app">
+    <h1>Consulta de CEP</h1>
 
-    <div class="links">
-      <a href="index.html">Consulta CEP</a>
-      <a href="dog-ceo.html">Dog CEO</a>
+    <!-- Conteúdo do Gerador de CEP -->
+    <div class="cep-section">
+      <label for="cepInput">Digite o CEP:</label>
+      <input type="text" id="cepInput" placeholder="Ex: 01001-000" maxlength="9">
+      <button id="consultarCepBtn">Consultar</button>
+      <div id="cepResult" class="cep-result">
+        <p><strong>Rua:</strong> <span id="logradouro"></span></p>
+        <p><strong>Bairro:</strong> <span id="bairro"></span></p>
+        <p><strong>Cidade:</strong> <span id="localidade"></span></p>
+        <p><strong>Estado:</strong> <span id="uf"></span></p>
+      </div>
     </div>
 
-    <div class="small">Abra os links para navegar entre as páginas. Desenvolvido para testes locais.</div>
-  </main>
+    <div class="button-group">
+      <!-- Botão para a página de Dog CEO -->
+      <a href="dog-ceo.html" class="neon-button dog-ceo"><span>Gerador de Imagens de Dogs</span></a>
+    </div>
+
+    <p class="footer-text">Desenvolvido com carinho para você!</p>
+  </div>
+
+  <script>
+    // Script JavaScript para a funcionalidade de consulta de CEP
+    const cepInput = document.getElementById('cepInput');
+    const consultarCepBtn = document.getElementById('consultarCepBtn');
+    const logradouroSpan = document.getElementById('logradouro');
+    const bairroSpan = document.getElementById('bairro');
+    const localidadeSpan = document.getElementById('localidade');
+    const ufSpan = document.getElementById('uf');
+    const cepResultDiv = document.getElementById('cepResult');
+
+    consultarCepBtn.addEventListener('click', async () => {
+      const cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+      if (cep.length !== 8) {
+        alert('Por favor, digite um CEP válido com 8 dígitos.');
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+
+        if (data.erro) {
+          alert('CEP não encontrado.');
+          logradouroSpan.textContent = '';
+          bairroSpan.textContent = '';
+          localidadeSpan.textContent = '';
+          ufSpan.textContent = '';
+        } else {
+          logradouroSpan.textContent = data.logradouro;
+          bairroSpan.textContent = data.bairro;
+          localidadeSpan.textContent = data.localidade;
+          ufSpan.textContent = data.uf;
+        }
+      } catch (error) {
+        console.error('Erro ao consultar o CEP:', error);
+        alert('Ocorreu um erro ao consultar o CEP. Tente novamente mais tarde.');
+      }
+    });
+
+    // Formata o CEP enquanto o usuário digita
+    cepInput.addEventListener('input', (event) => {
+      let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+      if (value.length > 5) {
+        value = value.substring(0, 5) + '-' + value.substring(5, 8);
+      } else {
+        value = value.substring(0, 5);
+      }
+      event.target.value = value;
+    });
+  </script>
+
 </body>
 </html>
-+
