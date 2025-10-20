@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dog CEO — Imagens de Cachorros </title>
+  <link rel="stylesheet" href="dog-ceo.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Dog CEO — Imagens de Cachorros </h1>
+      <p>Busque imagens aleatórias, por raça ou veja uma pequena galeria.</p>
+    </header>
+
+    <section class="controls">
+      <div class="control">
+        <button id="randomBtn">Imagem Aleatória</button>
+      </div>
+
+      <div class="control">
+        <label for="breedSelect">Selecionar raça:</label>
+        <select id="breedSelect">
+          <option value="">-- Carregando raças... --</option>
+        </select>
+        <button id="byBreedBtn">Obter imagem</button>
+      </div>
+
+      <div class="control">
+        <label for="galleryCount">Imagens na galeria:</label>
+        <input id="galleryCount" type="number" min="1" max="12" value="6">
+        <button id="galleryBtn">Carregar galeria</button>
+      </div>
+    </section>
+
+    <section id="result" class="result">
+      <!-- Imagens carregadas aqui -->
+    </section>
+
+    <footer>
+      <p>Fonte: <a href="https://dog.ceo/dog-api/" target="_blank" rel="noopener noreferrer">Dog CEO API</a></p>
+    </footer>
+  </main>
+
+  <script src="dog-ceo.js"></script>
+</body>
+</html>
++

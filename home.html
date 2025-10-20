@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Mini Apps</title>
+  <style>
+/* ======= RESET ======= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+body { height: 100vh; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; color: #fff }
+.bubble { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.5; animation: float 8s infinite ease-in-out; }
+.bubble:nth-child(1){ width:150px;height:150px; top:15%; left:10%; background:#ff00ff }
+.bubble:nth-child(2){ width:250px;height:250px; bottom:10%; right:15%; background:#00ffff }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
+.card { position: relative; width:420px; background: rgba(20,20,20,0.9); border-radius:16px; padding:28px; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04) }
+.card h1{ font-size:1.6rem; background: linear-gradient(90deg,#ff00ff,#00ffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px }
+.card p{ color:#cbdaf0; margin-bottom:18px }
+.links{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
+.links a{ display:inline-block; padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,#bf0fb3,#4dd0e1); color:#041018; font-weight:700; text-decoration:none }
+.small{ font-size:0.85rem; color:#9fb8cc; margin-top:12px }
+@media(max-width:480px){ .card{ width:92%; padding:18px } }
+  </style>
+</head>
+<body>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <main class="card">
+    <h1>Bem-vindo(a)</h1>
+    <p>Selecione uma das ferramentas abaixo — Projeto de exemplo com Dog CEO e consulta CEP.</p>
+
+    <div class="links">
+      <a href="index.html">Consulta CEP</a>
+      <a href="dog-ceo.html">Dog CEO</a>
+    </div>
+
+    <div class="small">Abra os links para navegar entre as páginas. Desenvolvido para testes locais.</div>
+  </main>
+</body>
+</html>
++

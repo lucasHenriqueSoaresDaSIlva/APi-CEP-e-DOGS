@@ -1,0 +1,135 @@
+/* ======= RESET ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ======= FUNDO DARK MODERNO ======= */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+
+/* ======= BOLHAS NEON ANIMADAS ======= */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.5;
+  animation: float 8s infinite ease-in-out;
+}
+.bubble:nth-child(1) {
+  width: 150px;
+  height: 150px;
+  top: 15%;
+  left: 10%;
+  background: #ff00ff;
+  animation-delay: 0s;
+}
+.bubble:nth-child(2) {
+  width: 250px;
+  height: 250px;
+  bottom: 10%;
+  right: 15%;
+  background: #00ffff;
+  animation-delay: 3s;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+/* ======= CONTAINER PRINCIPAL ======= */
+.app {
+  position: relative;
+  width: 380px;
+  backdrop-filter: blur(15px);
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+  padding: 40px 30px;
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 1s ease forwards;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 0.9rem;
+  text-align: left;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+input {
+  padding: 12px 15px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+input:focus {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+  border-color: #ff00ff;
+}
+
+button {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #ff00ff, #00ffff);
+  border: none;
+  padding: 12px;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255,0,255,0.4), 0 4px 15px rgba(0,255,255,0.4);
+}
+button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 25px rgba(255,0,255,0.6), 0 6px 25px rgba(0,255,255,0.6);
+}
+button:active {
+  transform: scale(0.98);
+}
+
+/* ======= RESPONSIVIDADE ======= */
+@media (max-width: 450px) {
+  .app {
+    width: 90%;
+    padding: 30px 20px;
+  }
+}

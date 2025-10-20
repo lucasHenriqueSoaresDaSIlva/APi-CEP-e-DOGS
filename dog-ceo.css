@@ -1,0 +1,131 @@
+/* ========== VARIABLES ========== */
+:root {
+  --bg: #0f1720;           /* page background base */
+  --card: #0b1220;         /* card background */
+  --accent1: #f36bff;      /* gradient accent 1 */
+  --accent2: #4dd0e1;      /* gradient accent 2 */
+  --glass: rgba(255,255,255,0.04);
+  --text-on-accent: #041018;
+  --muted: #cfeaf6;
+}
+
+/* ========== RESET & BASE ========== */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), #02040a);
+  color: #e6eef6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Container that centers the app content */
+.container{
+  width: 100%;
+  max-width: 980px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* ========== HEADER / TYPOGRAPHY ========== */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+header h1{
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+/* gradient heading utility: include both -webkit- and standard background-clip */
+.gradient-text{
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ========== CONTROLS ========== */
+.controls{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.control{
+  background: var(--glass);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+select, input[type=number]{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: inherit;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+button{
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--text-on-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ========== RESULT / GRID ========== */
+.result{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.card{
+  background: var(--card);
+  border-radius: 10px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.card img{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.card .meta{
+  padding: 8px;
+  font-size: 0.9rem;
+  color: #72078d;
+  text-align: center;
+}
+
+footer{
+  margin-top: 12px;
+  text-align: right;
+  font-size: 0.85rem;
+  color: #731299;
+}
+
+/* ========== RESPONSIVE ======== */
+@media (max-width: 640px){
+  .controls{ flex-direction: column; }
+  .result{ grid-template-columns: repeat(2, 1fr); }
+}
